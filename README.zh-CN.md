@@ -1,6 +1,6 @@
 # 抖音视频二创工具包
 
-[English](README.md)
+语言：[English](README.md) | [中文](README.zh-CN.md)
 
 这是一个 OpenClaw skill 和 FFmpeg 工具包，用来把抖音直播回放素材处理成竖屏短视频。
 
