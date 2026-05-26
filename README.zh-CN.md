@@ -128,6 +128,24 @@ git clone https://github.com/JunchenMeteor/douyin-video-toolkit.git ~/.claude/sk
 - 在用户未直接确认前发布内容
 - 下载或复用用户无权处理的内容
 
+### 交互式菜单
+
+安装后，AI 触发 skill 时会自动调用 `scripts/menu.js` 弹出交互菜单（需要 Node.js）：
+
+```
+你要做哪一步？
+（↑↓ 移动，Enter 确认，Ctrl+C 退出）
+
+❯ 下载直播回放（Step 1）
+  音频分析 / 定位高光片段（Step 2）
+  裁剪视频片段（Step 3）
+  ...
+  其他（手动输入）
+```
+
+不支持交互终端时，AI 会输出文本编号菜单，回复数字即可。
+语言跟随系统环境变量（`LANG`），也可以用 `MENU_LANG=zh node scripts/menu.js` 强制中文。
+
 ### 脚本速查
 
 所有脚本都在 `scripts/` 目录。
@@ -203,7 +221,8 @@ douyin-video-toolkit/
     ├── slowmo_vertical.sh
     ├── slowmo_vertical.ps1
     ├── add_bgm.sh
-    └── add_bgm.ps1
+    ├── add_bgm.ps1
+    └── menu.js
 ```
 
 ## 安全和合规

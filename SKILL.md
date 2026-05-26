@@ -38,6 +38,46 @@ Windows PowerShell 使用：
 - 不要替用户点击最终「发布」按钮。
 - 如果授权不清楚，只生成本地草稿或发布前草稿，并提醒用户确认权利。
 
+## Entry Gate
+
+触发此 skill 后，先确定用户要做哪一步，再执行。
+
+按以下优先级选择交互方式：
+
+1. **有 Bash 工具且 Node.js 可用**：执行 `node scripts/menu.js`，读取输出后继续。
+2. **Claude Code UI**：调用 `AskUserQuestion` 展示选项。
+3. **纯对话环境**：输出以下文本菜单，等待用户回复数字或关键词：
+
+```
+你要做哪一步？/ What do you want to do?
+
+1. 下载直播回放 / Download live replay (Step 1)
+2. 音频分析 / 定位高光片段 / Audio analysis (Step 2)
+3. 裁剪视频片段 / Clip extraction (Step 3)
+4. 竖屏转换 9:16 / Vertical conversion (Step 4)
+5. 慢动作特效 / Slow-motion effect (Step 5)
+6. 字幕烧录 / Subtitle burn-in (Step 6)
+7. BGM 混音 / BGM mixing (Step 7)
+8. 准备上传草稿 / Prepare upload draft (Step 8)
+9. 完整流程从头开始 / Full workflow from scratch
+10. 其他 / Other (describe freely)
+```
+
+如果用户触发时已说清楚要做什么，跳过菜单直接执行。用户可以随时用数字、关键词或自由描述回复。
+
+## Step Closure
+
+每步执行完后，AI 必须：
+
+1. 用 1-2 句话汇报结果（做了什么、产出文件是什么）
+2. 给出下一步建议
+3. 等待用户指令，不自动继续
+
+用户可以：
+- 说"继续"/"continue" → 执行下一步
+- 说"重来"/"redo" → 询问哪里不满意，重新执行当前步骤
+- 说"回到菜单"/"menu" → 重新走 Entry Gate
+
 ## 工作流程总览
 
 ```
