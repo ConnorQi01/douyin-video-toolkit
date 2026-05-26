@@ -1,6 +1,6 @@
 # Douyin Video Toolkit
 
-[简体中文](README.zh-CN.md)
+Language: [English](README.md) | [中文](README.zh-CN.md)
 
 An OpenClaw skill and FFmpeg toolkit for turning Douyin live replay footage into short vertical videos.
 
